@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Brevet Max 2026 • Révisions Ultimes by Ali</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --primary: #6366f1;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .subject-card {
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .tab-btn {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .tab-btn.active {
+            color: white;
+            border-bottom: 3px solid #6366f1;
+            font-weight: 600;
+        }
+
+        .quiz-option {
+            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .quiz-option:hover:not(.selected):not(.correct):not(.wrong) {
+            background-color: #27253a;
+            transform: translateX(4px);
+        }
+
+        .quiz-option.selected {
+            background-color: #312e81;
+            border-color: #6366f1;
+        }
+
+        .quiz-option.correct {
+            background-color: #166534;
+            border-color: #4ade80;
+        }
+
+        .quiz-option.wrong {
+            background-color: #991b1b;
+            border-color: #f87171;
+        }
+
+        .flashcard {
+            transition: transform 0.4s ease, box-shadow 0.3s ease;
+            perspective: 1000px;
+        }
+
+        .section-header {
+            background: linear-gradient(90deg, #18181b, transparent);
+        }
+
+        .brevet-badge {
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mini-progress {
+            height: 6px;
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .revision-card {
+            transition: all 0.3s ease;
+        }
+
+        .nav-active {
+            background-color: #27253a;
+            color: white;
+            border-radius: 9999px;
+        }
+
+        .maths-color { color: #3b82f6; }
+        .francais-color { color: #ec4899; }
+        .hg-color { color: #10b981; }
+        .svt-color { color: #f59e0b; }
+        .physique-color { color: #8b5cf6; }
+
+        .stat-card {
+            transition: transform 0.2s ease;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-200">
+    <!-- HEADER -->
+    <header class="border-b border-zinc-800 bg-zinc-900/95 backdrop-blur-lg sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-4">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-11 h-11 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-inner">
+                        <i class="fa-solid fa-graduation-cap text-white text-3xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold tracking-tighter font-display">Brevet <span class="brevet-badge">Max</span></h1>
+                        <p class="text-[10px] text-zinc-500 -mt-1 font-medium">SESSION 2026 • PAR Ali</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-x-3">
+                <button onclick="showMixedQuiz()" 
+                        class="flex items-center gap-x-2.5 px-5 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-zinc-600 transition-all rounded-3xl text-sm font-semibold">
+                    <i class="fa-solid fa-dice text-indigo-400"></i>
+                    <span>Quiz Mixte Aléatoire</span>
+                </button>
+                
+                <button onclick="resetAllProgress()" 
+                        class="flex items-center gap-x-2 px-4 py-2.5 text-sm font-medium text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 rounded-3xl transition-all">
+                    <i class="fa-solid fa-undo text-xs"></i>
+                    <span class="hidden sm:inline">Reset tout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="max-w-screen-2xl mx-auto px-8 pt-14 pb-10">
+        <div class="max-w-2xl">
+            <div class="inline-flex items-center gap-x-2 bg-zinc-900 border border-zinc-800 rounded-3xl px-4 py-1 mb-6">
+                <div class="flex items-center">
+                    <div class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></div>
+                </div>
+                <span class="text-emerald-400 text-sm font-semibold tracking-wider">BREVET DES COLLÈGES 2026 — PRÊT À TOUT DÉCHIRER ?</span>
+            </div>
+            
+            <h2 class="text-7xl font-bold tracking-tighter leading-none font-display">La révision<br>la plus complète<br>pour cartonner.</h2>
+            <p class="mt-5 text-xl text-zinc-400 max-w-md">5 matières • Quiz interactifs • Fiches ultra-claires • Flashcards • Suivi de progression</p>
+            
+            <div class="mt-8 flex items-center gap-x-4">
+                <button onclick="document.getElementById('matieres-section').scrollIntoView({ behavior: 'smooth' })" 
+                        class="px-9 py-4 bg-white text-zinc-950 hover:bg-zinc-100 active:scale-[0.985] transition-all font-bold text-lg rounded-3xl flex items-center gap-x-3 shadow-xl shadow-indigo-500/10">
+                    COMMENCER À RÉVISER
+                    <i class="fa-solid fa-arrow-right text-xl"></i>
+                </button>
+                <button onclick="showMixedQuiz()" 
+                        class="px-7 py-4 border border-zinc-700 hover:bg-zinc-900 transition-all font-semibold rounded-3xl flex items-center gap-x-2 text-base">
+                    <i class="fa-solid fa-random"></i>
+                    <span>Tester en mode mixte</span>
+                </button>
+            </div>
+            <p class="mt-4 text-xs text-zinc-500 flex items-center gap-x-1.5">
+                <i class="fa-solid fa-users"></i> 
+                <span>Utilisé par des centaines de 3e • Partage à tes potes !</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- PROGRESS OVERVIEW -->
+    <div class="max-w-screen-2xl mx-auto px-8 pb-14">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h3 class="font-bold text-2xl tracking-tight">Tes progrès</h3>
+                    <p class="text-zinc-400 text-sm">Meilleurs scores sauvegardés automatiquement</p>
+                </div>
+                <div class="text-right">
+                    <div id="global-score" class="text-4xl font-bold tabular-nums text-white">0</div>
+                    <div class="text-xs text-zinc-500 -mt-1">SCORE GLOBAL</div>
+                </div>
+            </div>
+            
+            <div id="progress-overview" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <!-- Populated dynamically by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MATIÈRES SECTION -->
+    <div id="matieres-section" class="max-w-screen-2xl mx-auto px-8 pb-20">
+        <div class="flex items-end justify-between mb-6">
+            <div>
+                <h3 class="text-3xl font-bold tracking-tight">Choisis ta matière</h3>
+                <p class="text-zinc-400">Chaque matière a ses propres questions, fiches et flashcards</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5" id="subject-grid">
+            <!-- Cards populated by JS -->
+        </div>
+    </div>
+
+    <!-- SUBJECT SECTIONS -->
+    <div class="max-w-screen-2xl mx-auto px-8 pb-24 space-y-20" id="subject-sections">
+        <!-- Populated dynamically by JS for cleanliness -->
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-zinc-800 bg-zinc-900 py-8">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center">
+            <div class="flex justify-center items-center gap-x-2 text-sm">
+                <span class="text-zinc-400">Créé avec</span> 
+                <span class="font-bold text-indigo-400">Ali</span> 
+                <span class="text-zinc-400">pour les 3e qui veulent tout casser au Brevet 2026</span>
+            </div>
+            <p class="text-[10px] text-zinc-500 mt-1">Si ce truc t'aide vraiment, dis à tous tes copains de l'utiliser. Merci ! 💪</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#6366f1');
+        }
+        
+        // Data for all subjects - REAL Brevet level content
+        const revisionData = {
+            maths: {
+                id: "maths",
+                name: "Mathématiques",
+                icon: "📐",
+                color: "#3b82f6",
+                shortDesc: "Pythagore, Thalès, fonctions, équations & stats",
+                fiches: [
+                    {
+                        title: "Théorème de Pythagore",
+                        content: "Dans un <strong>triangle rectangle</strong>, a² + b² = c² où c est l'hypoténuse (côté le plus long, face à l'angle droit). Permet de calculer n'importe quel côté manquant."
+                    },
+                    {
+                        title: "Théorème de Thalès",
+                        content: "Si une droite parallèle à un côté d'un triangle coupe les deux autres côtés, alors elle les <strong>partage proportionnellement</strong>. Produit en croix pour vérifier."
+                    },
+                    {
+                        title: "Fonctions linéaires et affines",
+                        content: "f(x) = ax (linéaire) ou f(x) = ax + b (affine). Le graphique est une droite. a = coefficient directeur (pente). b = ordonnée à l'origine."
+                    },
+                    {
+                        title: "Résolution d'équations",
+                        content: "ax + b = c → x = (c − b) / a. Toujours vérifier en remplaçant x dans l'équation de départ. Attention aux parenthèses et signes !"
+                    },
+                    {
+                        title: "Statistiques de base",
+                        content: "• Moyenne = somme des valeurs ÷ nombre de valeurs<br>• Médiane = valeur du milieu (données triées)<br>• Étendue = valeur max − valeur min<br>• Fréquence = effectif ÷ total"
+                    }
+                ],
+                questions: [
+                    {
+                        q: "Un triangle rectangle a des côtés de 5 cm et 12 cm. Quelle est la longueur de l'hypoténuse ?",
+                        options: ["13 cm", "17 cm", "10 cm", "15 cm"],
+                        correct: 0,
+                        explanation: "5² + 12² = 25 + 144 = 169 = 13². C'est le célèbre triangle 5-12-13."
+                    },
+                    {
+                        q: "Résous l'équation : 3x + 4 = 19",
+                        options: ["x = 3", "x = 5", "x = 4", "x = 7"],
+                        correct: 1,
+                        explanation: "3x = 19 − 4 = 15 → x = 15 ÷ 3 = 5. Vérification : 3×5 + 4 = 19 ✓"
+                    },
+                    {
+                        q: "Quelle est la pente (coefficient directeur) de la droite qui passe par les points (0,2) et (4,10) ?",
+                        options: ["2", "1", "4", "3"],
+                        correct: 0,
+                        explanation: "Pente = (variation de y) / (variation de x) = (10-2) / (4-0) = 8/4 = 2."
+                    },
+                    {
+                        q: "Un triangle a des côtés 7, 24 et 25. Est-ce un triangle rectangle ?",
+                        options: ["Oui", "Non", "On ne peut pas savoir", "Seulement s'il est isocèle"],
+                        correct: 0,
+                        explanation: "7² + 24² = 49 + 576 = 625 = 25². Oui, c'est un triangle rectangle."
+                    },
+                    {
+                        q: "La moyenne de 6 notes est 13,5. Quelle est la somme totale des notes ?",
+                        options: ["78", "81", "85", "79,5"],
+                        correct: 1,
+                        explanation: "Moyenne = somme ÷ 6 = 13,5 → somme = 13,5 × 6 = 81."
+                    }
+                ],
+                flashcards: [
+                    { front: "Hypoténuse", back: "Côté le plus long d'un triangle rectangle, opposé à l'angle droit." },
+                    { front: "Coefficient directeur", back: "Pente de la droite d'une fonction. Noté 'a' dans f(x) = ax + b." },
+                    { front: "Médiane", back: "Valeur centrale d'une série de données triées par ordre croissant." },
+                    { front: "Produit en croix", back: "Méthode pour vérifier ou résoudre des proportions : a/b = c/d → a×d = b×c." },
+                    { front: "Étendue", back: "Différence entre la plus grande et la plus petite valeur d'une série." }
+                ]
+            },
+            
+            francais: {
+                id: "francais",
+                name: "Français",
+                icon: "📖",
+                color: "#ec4899",
+                shortDesc: "Grammaire, orthographe, compréhension & rédaction",
+                fiches: [
+                    {
+                        title: "Accord du participe passé",
+                        content: "Avec <strong>avoir</strong> : le participe passé s'accorde avec le COD si celui-ci est placé <strong>avant</strong> le verbe. Avec <strong>être</strong> : il s'accorde toujours avec le sujet."
+                    },
+                    {
+                        title: "Homophones grammaticaux",
+                        content: "• a / à → a = verbe avoir, à = préposition<br>• on / ont → on = pronom, ont = verbe avoir<br>• son / sont → son = déterminant, sont = verbe être<br>• ce / se, c'est / s'est, etc."
+                    },
+                    {
+                        title: "Figures de style",
+                        content: "• <strong>Métaphore</strong> : comparaison sans outil (ex: « la vie est un long fleuve tranquille »)<br>• <strong>Comparaison</strong> : avec « comme », « tel que »<br>• <strong>Personnification</strong> : donner des traits humains à une chose<br>• <strong>Hyperbole</strong> : exagération"
+                    },
+                    {
+                        title: "Types et formes de phrases",
+                        content: "• <strong>Déclarative</strong> : affirme ou nie<br>• <strong>Interrogative</strong> : pose une question<br>• <strong>Exclamative</strong> : exprime un sentiment<br>• <strong>Impérative</strong> : donne un ordre"
+                    },
+                    {
+                        title: "Compléments d'objet",
+                        content: "• <strong>COD</strong> : Complément d'Objet Direct (sans préposition)<br>• <strong>COI</strong> : Complément d'Objet Indirect (avec à ou de)<br>• <strong>COS</strong> : Complément d'Objet Second"
+                    }
+                ],
+                questions: [
+                    {
+                        q: "Choisis la bonne orthographe : « Il ___ mangé une pomme. »",
+                        options: ["a", "à", "ont", "es"],
+                        correct: 0,
+                        explanation: "« a » est la 3e personne du singulier du verbe avoir. « à » est une préposition."
+                    },
+                    {
+                        q: "Dans la phrase « Les fleurs que j'ai cueillies sont magnifiques », le participe passé « cueillies » s'accorde avec :",
+                        options: ["Le sujet « Les fleurs »", "Le COD « que » placé avant", "Rien, il reste invariable", "Le verbe « sont »"],
+                        correct: 1,
+                        explanation: "Avec l'auxiliaire avoir, le participe passé s'accorde avec le COD quand celui-ci est avant le verbe. Ici « que » représente « les fleurs »."
+                    },
+                    {
+                        q: "Quelle figure de style dans : « Il pleut des cordes » ?",
+                        options: ["Métaphore", "Comparaison", "Hyperbole", "Personnification"],
+                        correct: 0,
+                        explanation: "C'est une métaphore : on compare la pluie à des cordes sans dire « comme »."
+                    },
+                    {
+                        q: "Choisis la bonne phrase : « ___ sont allés au cinéma hier soir. »",
+                        options: ["On", "Ont", "Son", "Sont"],
+                        correct: 1,
+                        explanation: "« Ont » est la 3e personne du pluriel du verbe avoir. « On » est un pronom indéfini."
+                    },
+                    {
+                        q: "Dans « Pierre donne un livre à Marie », quel est le COI ?",
+                        options: ["un livre", "Pierre", "à Marie", "donne"],
+                        correct: 2,
+                        explanation: "« à Marie » est le Complément d'Objet Indirect (introduit par la préposition « à »)."
+                    }
+                ],
+                flashcards: [
+                    { front: "COD", back: "Complément d'Objet Direct — répond à « quoi ? » ou « qui ? » sans préposition." },
+                    { front: "Métaphore", back: "Figure de style qui compare deux choses sans outil de comparaison." },
+                    { front: "Participe passé + avoir", back: "S'accorde avec le COD s'il est placé avant le verbe." },
+                    { front: "Hyperbole", back: "Exagération volontaire pour insister sur une idée (ex: « je meurs de faim »)." },
+                    { front: "COI", back: "Complément d'Objet Indirect — introduit par « à » ou « de »." }
+                ]
+            },
+            
+            hg: {
+                id: "hg",
+                name: "Histoire-Géo-EMC",
+                icon: "🌍",
+                color: "#10b981",
+                shortDesc: "WWII, monde actuel, citoyenneté & géographie de la France",
+                fiches: [
+                    {
+                        title: "Seconde Guerre mondiale (1939-1945)",
+                        content: "• 1er septembre 1939 : Invasion de la Pologne → début de la guerre<br>• Juin 1940 : Armistice de la France<br>• 1942 : Débarquement allié en Afrique du Nord<br>• 6 juin 1944 : Débarquement de Normandie<br>• 8 mai 1945 : Capitulation de l'Allemagne"
+                    },
+                    {
+                        title: "La France dans la guerre",
+                        content: "• <strong>Résistance</strong> : Réseaux clandestins, sabotage, renseignement<br>• <strong>Collaboration</strong> : Gouvernement de Vichy<br>• <strong>Libération</strong> : Août 1944 à Paris<br>• Rôle des femmes dans la Résistance"
+                    },
+                    {
+                        title: "Géographie de la France",
+                        content: "• <strong>Relief</strong> : Alpes, Pyrénées, Massif central, plaines<br>• <strong>Climats</strong> : Océanique (Ouest), Méditerranéen (Sud), Continental (Est)<br>• <strong>Population</strong> : ~68 millions d'habitants<br>• <strong>Villes principales</strong> : Paris, Lyon, Marseille, Toulouse"
+                    },
+                    {
+                        title: "La citoyenneté (EMC)",
+                        content: "• <strong>Laïcité</strong> : Séparation des Églises et de l'État (loi 1905)<br>• <strong>Droits de l'Homme</strong> : Déclaration de 1789 et 1948<br>• <strong>Devoirs du citoyen</strong> : Respecter la loi, payer ses impôts, défendre la patrie<br>• <strong>Vote</strong> : Droit et devoir à partir de 18 ans"
+                    },
+                    {
+                        title: "Mondialisation et développement",
+                        content: "• <strong>Mondialisation</strong> : Interdépendance économique et culturelle des pays<br>• <strong>Développement durable</strong> : Répondre aux besoins actuels sans compromettre ceux des générations futures<br>• <strong>Inégalités</strong> : Nord/Sud, pays riches vs pays en développement"
+                    }
+                ],
+                questions: [
+                    {
+                        q: "En quelle année a eu lieu le débarquement en Normandie ?",
+                        options: ["1942", "1943", "1944", "1945"],
+                        correct: 2,
+                        explanation: "Le 6 juin 1944, les Alliés débarquent en Normandie (Opération Overlord)."
+                    },
+                    {
+                        q: "Quel est le nom du gouvernement français qui a collaboré avec l'Allemagne nazie entre 1940 et 1944 ?",
+                        options: ["Le gouvernement de la République", "Le gouvernement de Vichy", "Le gouvernement de la Libération", "Le gouvernement de De Gaulle"],
+                        correct: 1,
+                        explanation: "Le régime de Vichy, dirigé par le maréchal Pétain, a collaboré avec l'occupant allemand."
+                    },
+                    {
+                        q: "Quelle est la plus grande ville de France après Paris ?",
+                        options: ["Marseille", "Lyon", "Toulouse", "Nice"],
+                        correct: 1,
+                        explanation: "Lyon est la 2e ville de France en nombre d'habitants (environ 1,7 million dans l'agglomération)."
+                    },
+                    {
+                        q: "La loi de 1905 en France concerne :",
+                        options: ["Le droit de vote des femmes", "La laïcité et la séparation des Églises et de l'État", "L'abolition de l'esclavage", "La protection de l'environnement"],
+                        correct: 1,
+                        explanation: "La loi du 9 décembre 1905 établit la laïcité en France : séparation des Églises et de l'État."
+                    },
+                    {
+                        q: "Quel événement marque la fin de la Seconde Guerre mondiale en Europe ?",
+                        options: ["Le débarquement de Normandie", "La capitulation de l'Allemagne le 8 mai 1945", "Le bombardement d'Hiroshima", "La libération de Paris"],
+                        correct: 1,
+                        explanation: "L'Allemagne signe sa capitulation sans condition le 8 mai 1945 (VE Day)."
+                    }
+                ],
+                flashcards: [
+                    { front: "Débarquement de Normandie", back: "6 juin 1944 — Opération Overlord, début de la libération de l'Europe de l'Ouest." },
+                    { front: "Laïcité", back: "Principe selon lequel l'État est neutre en matière religieuse (loi 1905)." },
+                    { front: "Régime de Vichy", back: "Gouvernement français collaborationniste (1940-1944) dirigé par Pétain." },
+                    { front: "Développement durable", back: "Développement qui répond aux besoins du présent sans compromettre ceux des générations futures." },
+                    { front: "Résistance", back: "Mouvement clandestin qui a lutté contre l'occupant allemand et le régime de Vichy." }
+                ]
+            },
+            
+            svt: {
+                id: "svt",
+                name: "SVT",
+                icon: "🧬",
+                color: "#f59e0b",
+                shortDesc: "Génétique, évolution, géologie & environnement",
+                fiches: [
+                    {
+                        title: "La reproduction",
+                        content: "• <strong>Sexuée</strong> : deux parents, gamètes (ovule + spermatozoïde), brassage génétique<br>• <strong>Asexuée</strong> : un seul parent, clone (ex: bouturage, division cellulaire)<br>• Avantage de la sexuée : diversité génétique = meilleure adaptation"
+                    },
+                    {
+                        title: "Transmission des caractères héréditaires",
+                        content: "• <strong>ADN</strong> : molécule qui porte l'information génétique<br>• <strong>Gène</strong> : portion d'ADN qui code un caractère<br>• <strong>Chromosome</strong> : structure qui contient les gènes (23 paires chez l'humain)<br>• <strong>Allèles</strong> : différentes versions d'un même gène"
+                    },
+                    {
+                        title: "Tectonique des plaques",
+                        content: "• La lithosphère est découpée en plaques qui bougent<br>• <strong>Divergence</strong> : formation de dorsales océaniques et rift<br>• <strong>Convergence</strong> : formation de chaînes de montagnes et fosses océaniques<br>• <strong>Subduction</strong> : une plaque passe sous une autre"
+                    },
+                    {
+                        title: "Écosystèmes et biodiversité",
+                        content: "• <strong>Écosystème</strong> = milieu + êtres vivants + interactions<br>• <strong>Biodiversité</strong> = variété des espèces et des gènes<br>• Menaces : destruction des habitats, pollution, changement climatique, surexploitation"
+                    },
+                    {
+                        title: "Changement climatique",
+                        content: "• Augmentation des gaz à effet de serre (CO₂, méthane)<br>• Conséquences : fonte des glaces, montée des eaux, événements extrêmes<br>• Solutions : réduction des émissions, énergies renouvelables, reforestation"
+                    }
+                ],
+                questions: [
+                    {
+                        q: "Chez l'être humain, combien de paires de chromosomes possède-t-on ?",
+                        options: ["22 paires", "23 paires", "46 paires", "44 paires"],
+                        correct: 1,
+                        explanation: "L'être humain possède 23 paires de chromosomes (soit 46 chromosomes au total)."
+                    },
+                    {
+                        q: "Quel est l'avantage principal de la reproduction sexuée par rapport à la reproduction asexuée ?",
+                        options: ["Elle est plus rapide", "Elle crée des clones identiques", "Elle génère de la diversité génétique", "Elle ne nécessite pas de partenaire"],
+                        correct: 2,
+                        explanation: "La reproduction sexuée permet un brassage génétique, ce qui augmente la diversité et les chances d'adaptation."
+                    },
+                    {
+                        q: "Que se passe-t-il lors d'une subduction ?",
+                        options: ["Deux plaques s'éloignent", "Une plaque passe sous une autre", "Deux plaques glissent l'une contre l'autre", "Une nouvelle plaque se forme"],
+                        correct: 1,
+                        explanation: "En subduction, une plaque océanique plonge sous une autre plaque, ce qui forme des fosses et des volcans."
+                    },
+                    {
+                        q: "Quel gaz est le principal responsable de l'augmentation de l'effet de serre due aux activités humaines ?",
+                        options: ["L'oxygène", "Le dioxyde de carbone (CO₂)", "L'azote", "L'argon"],
+                        correct: 1,
+                        explanation: "Le CO₂ issu de la combustion des énergies fossiles est le principal gaz à effet de serre anthropique."
+                    },
+                    {
+                        q: "Qu'est-ce qu'un allèle ?",
+                        options: ["Un type de cellule", "Une version différente d'un gène", "Un chromosome entier", "Une molécule d'ADN"],
+                        correct: 1,
+                        explanation: "Un allèle est l'une des versions possibles d'un gène (ex: allèle « yeux bleus » ou « yeux marron »)."
+                    }
+                ],
+                flashcards: [
+                    { front: "ADN", back: "Acide désoxyribonucléique — molécule qui contient l'information génétique." },
+                    { front: "Subduction", back: "Phénomène où une plaque tectonique plonge sous une autre." },
+                    { front: "Gamète", back: "Cellule reproductrice (ovule chez la femme, spermatozoïde chez l'homme)." },
+                    { front: "Biodiversité", back: "Variété des espèces vivantes et de leurs gènes dans un milieu." },
+                    { front: "Effet de serre", back: "Phénomène naturel amplifié par les activités humaines qui réchauffe la Terre." }
+                ]
+            },
+            
+            physique: {
+                id: "physique",
+                name: "Physique-Chimie",
+                icon: "⚗️",
+                color: "#8b5cf6",
+                shortDesc: "Électricité, transformations chimiques, énergie & forces",
+                fiches: [
+                    {
+                        title: "Loi d'Ohm",
+                        content: "Dans un circuit électrique : <strong>U = R × I</strong><br>• U = tension (en volts V)<br>• R = résistance (en ohms Ω)<br>• I = intensité du courant (en ampères A)<br>Plus la résistance est grande, plus l'intensité diminue pour une tension donnée."
+                    },
+                    {
+                        title: "Puissance électrique",
+                        content: "P = U × I (en watts W)<br>La puissance indique la quantité d'énergie électrique consommée ou fournie par seconde.<br>Exemple : une ampoule de 60 W consomme 60 joules par seconde."
+                    },
+                    {
+                        title: "Transformations chimiques",
+                        content: "• <strong>Réactifs</strong> : substances présentes au début<br>• <strong>Produits</strong> : substances formées<br>• Conservation de la masse (Lavoisier) : masse totale avant = masse totale après<br>• Exemple : combustion du méthane + oxygène → dioxyde de carbone + eau"
+                    },
+                    {
+                        title: "Atomes et molécules",
+                        content: "• <strong>Atome</strong> : plus petite partie d'un élément chimique<br>• <strong>Molécule</strong> : assemblage de plusieurs atomes (ex: H₂O = eau)<br>• <strong>Formule chimique</strong> : indique les atomes présents (ex: CO₂)"
+                    },
+                    {
+                        title: "Énergie et forces",
+                        content: "• <strong>Énergie</strong> : capacité à produire un travail ou de la chaleur<br>• <strong>Force</strong> : action qui peut déformer ou mettre en mouvement un objet<br>• <strong>Travail</strong> = force × distance (en joules)<br>• Les forces peuvent s'équilibrer ou non"
+                    }
+                ],
+                questions: [
+                    {
+                        q: "Dans un circuit, la tension U = 12 V et la résistance R = 4 Ω. Quelle est l'intensité I du courant ?",
+                        options: ["48 A", "3 A", "16 A", "0,33 A"],
+                        correct: 1,
+                        explanation: "D'après la loi d'Ohm : I = U / R = 12 / 4 = 3 ampères."
+                    },
+                    {
+                        q: "Quelle est la puissance d'un appareil électrique qui fonctionne sous 230 V avec une intensité de 2 A ?",
+                        options: ["115 W", "460 W", "232 W", "100 W"],
+                        correct: 1,
+                        explanation: "P = U × I = 230 × 2 = 460 watts."
+                    },
+                    {
+                        q: "Lors d'une transformation chimique, que dit le principe de conservation de la masse ?",
+                        options: ["La masse des produits est toujours supérieure à celle des réactifs", "La masse totale des réactifs est égale à la masse totale des produits", "La masse diminue toujours", "La masse augmente toujours"],
+                        correct: 1,
+                        explanation: "Selon Lavoisier : « Rien ne se perd, rien ne se crée, tout se transforme ». La masse est conservée."
+                    },
+                    {
+                        q: "Quelle est la formule chimique de l'eau ?",
+                        options: ["H₂O", "CO₂", "O₂", "H₂O₂"],
+                        correct: 0,
+                        explanation: "L'eau est composée de 2 atomes d'hydrogène et 1 atome d'oxygène → H₂O."
+                    },
+                    {
+                        q: "Un objet est en mouvement rectiligne uniforme. Quelle est la résultante des forces qui s'appliquent sur lui ?",
+                        options: ["Nulle", "Très grande", "Dirigée vers le bas", "Variable"],
+                        correct: 0,
+                        explanation: "Si la vitesse est constante (mouvement rectiligne uniforme), la résultante des forces est nulle (équilibre des forces)."
+                    }
+                ],
+                flashcards: [
+                    { front: "Loi d'Ohm", back: "U = R × I — Relation entre tension, résistance et intensité dans un circuit." },
+                    { front: "Puissance électrique", back: "P = U × I. Exprimée en watts (W). Indique l'énergie consommée par seconde." },
+                    { front: "Conservation de la masse", back: "Principe de Lavoisier : la masse totale avant et après une réaction chimique est identique." },
+                    { front: "Molécule", back: "Assemblage de plusieurs atomes liés entre eux (exemple : H₂O pour l'eau)." },
+                    { front: "Mouvement rectiligne uniforme", back: "Mouvement en ligne droite à vitesse constante → résultante des forces nulle." }
+                ]
+            }
+        };
+
+        // User scores from localStorage
+        let userScores = JSON.parse(localStorage.getItem('brevetMaxScores')) || {
+            maths: 0,
+            francais: 0,
+            hg: 0,
+            svt: 0,
+            physique: 0
+        };
+
+        // Current quiz state
+        let currentQuiz = {
+            subject: null,
+            questions: [],
+            currentIndex: 0,
+            score: 0,
+            answers: []
+        };
+
+        let currentFlashcard = {
+            subject: null,
+            index: 0,
+            data: []
+        };
+
+        // Initialize everything
+        function init() {
+            initializeTailwind();
+            renderSubjectCards();
+            renderProgressOverview();
+            renderAllSubjectSections();
+            
+            // Show maths fiches by default in its section (will be done on render)
+            setTimeout(() => {
+                // Auto open first tab for maths if wanted, but better not
+            }, 300);
+        }
+
+        // Render the 5 subject cards
+        function renderSubjectCards() {
+            const grid = document.getElementById('subject-grid');
+            grid.innerHTML = '';
+            
+            Object.keys(revisionData).forEach(key => {
+                const subject = revisionData[key];
+                const score = userScores[key] || 0;
+                
+                const cardHTML = `
+                    <div onclick="goToSubject('${key}')" 
+                         class="subject-card bg-zinc-900 border border-zinc-700 hover:border-zinc-600 rounded-3xl p-6 cursor-pointer group">
+                        <div class="flex items-start justify-between">
+                            <div class="text-5xl mb-4">${subject.icon}</div>
+                            <div class="text-right">
+                                <div class="text-xs px-3 py-1 rounded-full bg-zinc-800 text-zinc-400 font-mono">${score}%</div>
+                            </div>
+                        </div>
+                        
+                        <h4 class="font-bold text-2xl tracking-tight mb-1 group-hover:text-white transition-colors">${subject.name}</h4>
+                        <p class="text-sm text-zinc-400 mb-4 line-clamp-2">${subject.shortDesc}</p>
+                        
+                        <div class="flex items-center justify-between text-xs">
+                            <div class="flex items-center gap-x-1.5 text-emerald-400">
+                                <i class="fa-solid fa-check-circle"></i>
+                                <span class="font-medium">Prêt pour le brevet</span>
+                            </div>
+                            <button class="px-4 py-1.5 text-xs font-semibold bg-zinc-800 group-hover:bg-zinc-700 transition-colors rounded-2xl">
+                                Réviser →
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+        }
+
+        // Go to a subject section
+        function goToSubject(subjectKey) {
+            const section = document.getElementById(`section-${subjectKey}`);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Open the fiches tab by default
+                setTimeout(() => {
+                    switchTab(subjectKey, 'fiches');
+                }, 600);
+            }
+        }
+
+        // Render progress overview cards
+        function renderProgressOverview() {
+            const container = document.getElementById('progress-overview');
+            container.innerHTML = '';
+            
+            let total = 0;
+            let count = 0;
+            
+            Object.keys(revisionData).forEach(key => {
+                const subject = revisionData[key];
+                const score = userScores[key] || 0;
+                total += score;
+                count++;
+                
+                const progressHTML = `
+                    <div onclick="goToSubject('${key}')" class="stat-card bg-zinc-800 border border-zinc-700 hover:border-zinc-500 rounded-2xl p-4 cursor-pointer">
+                        <div class="flex items-center gap-x-3">
+                            <div class="text-3xl">${subject.icon}</div>
+                            <div class="flex-1 min-w-0">
+                                <div class="font-semibold text-sm">${subject.name}</div>
+                                <div class="mt-2 h-2 bg-zinc-700 rounded-full overflow-hidden">
+                                    <div class="mini-progress h-2 rounded-full" style="width: ${score}%"></div>
+                                </div>
+                                <div class="flex justify-between items-baseline mt-1">
+                                    <div class="text-xl font-bold tabular-nums">${score}</div>
+                                    <div class="text-xs text-zinc-500">/ 100</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += progressHTML;
+            });
+            
+            // Global average
+            const globalAvg = count > 0 ? Math.round(total / count) : 0;
+            document.getElementById('global-score').textContent = globalAvg;
+        }
+
+        // Render all subject sections
+        function renderAllSubjectSections() {
+            const container = document.getElementById('subject-sections');
+            container.innerHTML = '';
+            
+            Object.keys(revisionData).forEach(key => {
+                const subject = revisionData[key];
+                
+                const sectionHTML = `
+                    <section id="section-${key}" class="scroll-mt-20">
+                        <!-- Header -->
+                        <div class="flex items-center gap-x-4 mb-6">
+                            <div class="w-14 h-14 rounded-3xl flex items-center justify-center text-5xl" style="background-color: ${subject.color}20; color: ${subject.color}">
+                                ${subject.icon}
+                            </div>
+                            <div>
+                                <h2 class="text-4xl font-bold tracking-tighter">${subject.name}</h2>
+                                <p class="text-zinc-400">${subject.shortDesc}</p>
+                            </div>
+                            <div class="flex-1"></div>
+                            <div class="text-right">
+                                <div class="text-xs text-zinc-500">MEILLEUR SCORE</div>
+                                <div class="text-3xl font-bold tabular-nums" id="score-badge-${key}">${userScores[key] || 0}<span class="text-base align-super">%</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Tabs -->
+                        <div class="flex border-b border-zinc-800 mb-6 text-sm">
+                            <button onclick="switchTab('${key}', 'fiches')" 
+                                    class="tab-btn px-7 py-3 font-medium flex items-center gap-x-2 active" data-subject="${key}" data-tab="fiches">
+                                <i class="fa-solid fa-book"></i>
+                                <span>Fiches de révision</span>
+                            </button>
+                            <button onclick="switchTab('${key}', 'quiz')" 
+                                    class="tab-btn px-7 py-3 font-medium flex items-center gap-x-2" data-subject="${key}" data-tab="quiz">
+                                <i class="fa-solid fa-question-circle"></i>
+                                <span>Quiz interactif</span>
+                            </button>
+                            <button onclick="switchTab('${key}', 'flashcards')" 
+                                    class="tab-btn px-7 py-3 font-medium flex items-center gap-x-2" data-subject="${key}" data-tab="flashcards">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <span>Flashcards</span>
+                            </button>
+                        </div>
+
+                        <!-- FICHES TAB -->
+                        <div id="${key}-fiches" class="tab-content">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                ${subject.fiches.map((fiche, index) => `
+                                    <div class="bg-zinc-900 border border-zinc-700 rounded-2xl p-5">
+                                        <div class="font-bold text-lg mb-2 flex items-center gap-x-2">
+                                            <span class="text-xs px-2.5 py-1 rounded-xl bg-zinc-800 font-mono">${index + 1}</span>
+                                            ${fiche.title}
+                                        </div>
+                                        <div class="text-sm text-zinc-300 leading-relaxed">${fiche.content}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="mt-4 text-xs text-emerald-400 flex items-center gap-x-2">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                <span class="font-medium">Conseil : Relis ces fiches avant de lancer le quiz !</span>
+                            </div>
+                        </div>
+
+                        <!-- QUIZ TAB -->
+                        <div id="${key}-quiz" class="tab-content hidden">
+                            <div id="${key}-quiz-start" class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 text-center">
+                                <div class="mx-auto w-16 h-16 bg-zinc-800 rounded-2xl flex items-center justify-center mb-6">
+                                    <i class="fa-solid fa-question-circle text-4xl text-indigo-400"></i>
+                                </div>
+                                <h4 class="font-bold text-2xl">Prêt pour le quiz ${subject.name} ?</h4>
+                                <p class="text-zinc-400 mt-2 max-w-xs mx-auto">5 questions • Niveau Brevet • Explications détaillées à chaque réponse</p>
+                                
+                                <button onclick="startQuiz('${key}')" 
+                                        class="mt-8 px-10 py-4 bg-white text-zinc-950 hover:bg-zinc-100 active:scale-[0.985] transition-all font-bold rounded-3xl text-lg flex items-center gap-x-3 mx-auto">
+                                    COMMENCER LE QUIZ
+                                    <i class="fa-solid fa-play ml-1"></i>
+                                </button>
+                                
+                                <div class="mt-6 text-xs text-zinc-500">Tes réponses sont enregistrées uniquement pour ton suivi de progression</div>
+                            </div>
+                            
+                            <div id="${key}-quiz-container" class="hidden bg-zinc-900 border border-zinc-700 rounded-3xl p-8">
+                                <!-- Quiz content injected by JS -->
+                            </div>
+                        </div>
+
+                        <!-- FLASHCARDS TAB -->
+                        <div id="${key}-flashcards" class="tab-content hidden">
+                            <div id="${key}-flashcard-start" class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 text-center">
+                                <div class="mx-auto w-16 h-16 bg-zinc-800 rounded-2xl flex items-center justify-center mb-6">
+                                    <i class="fa-solid fa-layer-group text-4xl text-amber-400"></i>
+                                </div>
+                                <h4 class="font-bold text-2xl">Mémorise avec les flashcards</h4>
+                                <p class="text-zinc-400 mt-2">5 cartes essentielles • Clique sur "Voir la réponse"</p>
+                                
+                                <button onclick="startFlashcards('${key}')" 
+                                        class="mt-8 px-10 py-4 bg-white text-zinc-950 hover:bg-zinc-100 active:scale-[0.985] transition-all font-bold rounded-3xl text-lg flex items-center gap-x-3 mx-auto">
+                                    COMMENCER LES FLASHCARDS
+                                    <i class="fa-solid fa-sync ml-1"></i>
+                                </button>
+                            </div>
+                            
+                            <div id="${key}-flashcard-viewer" class="hidden bg-zinc-900 border border-zinc-700 rounded-3xl p-8">
+                                <!-- Flashcard viewer injected by JS -->
+                            </div>
+                        </div>
+                    </section>
+                `;
+                
+                container.innerHTML += sectionHTML;
+            });
+        }
+
+        // Switch between tabs in a subject section
+        function switchTab(subjectKey, tab) {
+            // Hide all tab contents for this subject
+            document.querySelectorAll(`#section-${subjectKey} .tab-content`).forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Show the selected tab
+            const target = document.getElementById(`${subjectKey}-${tab}`);
+            if (target) target.classList.remove('hidden');
+            
+            // Update active tab button style
+            document.querySelectorAll(`[data-subject="${subjectKey}"]`).forEach(btn => {
+                btn.classList.remove('active', 'border-b-2', 'border-indigo-500');
+                if (btn.getAttribute('data-tab') === tab) {
+                    btn.classList.add('active', 'border-b-2', 'border-indigo-500');
+                }
+            });
+        }
+
+        // ==================== QUIZ SYSTEM ====================
+        function startQuiz(subjectKey) {
+            const subject = revisionData[subjectKey];
+            currentQuiz = {
+                subject: subjectKey,
+                questions: [...subject.questions], // copy
+                currentIndex: 0,
+                score: 0,
+                answers: []
+            };
+            
+            // Hide start screen, show container
+            document.getElementById(`${subjectKey}-quiz-start`).classList.add('hidden');
+            const container = document.getElementById(`${subjectKey}-quiz-container`);
+            container.classList.remove('hidden');
+            
+            renderCurrentQuestion(subjectKey);
+        }
+
+        function renderCurrentQuestion(subjectKey) {
+            const container = document.getElementById(`${subjectKey}-quiz-container`);
+            const quiz = currentQuiz;
+            const q = quiz.questions[quiz.currentIndex];
+            
+            let html = `
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <span class="px-4 py-1 bg-zinc-800 text-xs font-mono rounded-2xl">QUESTION ${quiz.currentIndex + 1} / ${quiz.questions.length}</span>
+                    </div>
+                    <div class="text-sm font-medium text-zinc-400">
+                        Score : <span class="font-bold text-white">${quiz.score}</span> / ${quiz.currentIndex}
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <div class="text-xl font-semibold leading-tight">${q.q}</div>
+                </div>
+                
+                <div class="space-y-3" id="options-container">
+            `;
+            
+            q.options.forEach((option, index) => {
+                html += `
+                    <button onclick="selectAnswer(${index}, '${subjectKey}')"
+                            class="quiz-option w-full text-left px-6 py-4 border border-zinc-600 hover:border-zinc-400 rounded-2xl flex items-center justify-between group">
+                        <div class="flex items-center gap-x-4">
+                            <div class="w-8 h-8 flex-shrink-0 rounded-xl border border-zinc-600 flex items-center justify-center font-mono text-sm group-hover:border-zinc-400">
+                                ${String.fromCharCode(65 + index)}
+                            </div>
+                            <span class="text-base">${option}</span>
+                        </div>
+                    </button>
+                `;
+            });
+            
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function selectAnswer(selectedIndex, subjectKey) {
+            const quiz = currentQuiz;
+            const q = quiz.questions[quiz.currentIndex];
+            const isCorrect = selectedIndex === q.correct;
+            
+            if (isCorrect) quiz.score++;
+            
+            quiz.answers.push({
+                questionIndex: quiz.currentIndex,
+                selected: selectedIndex,
+                correct: q.correct,
+                isCorrect: isCorrect
+            });
+            
+            // Show feedback on options
+            const optionsContainer = document.getElementById('options-container');
+            const buttons = optionsContainer.querySelectorAll('button');
+            
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                btn.classList.add('cursor-default');
+                
+                if (idx === q.correct) {
+                    btn.classList.add('correct', 'border-green-500', 'bg-green-900/30');
+                    btn.innerHTML = btn.innerHTML.replace('</div>', ' <i class="fa-solid fa-check text-green-400 ml-auto"></i></div>');
+                } else if (idx === selectedIndex && !isCorrect) {
+                    btn.classList.add('wrong', 'border-red-500', 'bg-red-900/30');
+                    btn.innerHTML = btn.innerHTML.replace('</div>', ' <i class="fa-solid fa-times text-red-400 ml-auto"></i></div>');
+                }
+            });
+            
+            // Add explanation
+            const explanationDiv = document.createElement('div');
+            explanationDiv.className = `mt-6 p-5 rounded-2xl border ${isCorrect ? 'border-green-600 bg-green-900/10' : 'border-red-600 bg-red-900/10'}`;
+            explanationDiv.innerHTML = `
+                <div class="flex gap-x-3">
+                    <div class="mt-0.5">
+                        <i class="fa-solid ${isCorrect ? 'fa-check-circle text-green-400' : 'fa-info-circle text-red-400'} text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-bold ${isCorrect ? 'text-green-400' : 'text-red-400'} mb-1">
+                            ${isCorrect ? 'Bonne réponse !' : 'Pas tout à fait...'}
+                        </div>
+                        <div class="text-sm text-zinc-300">${q.explanation}</div>
+                    </div>
+                </div>
+            `;
+            optionsContainer.parentNode.appendChild(explanationDiv);
+            
+            // Next button
+            const nextBtn = document.createElement('button');
+            nextBtn.className = `mt-6 w-full py-4 font-bold text-lg rounded-3xl flex items-center justify-center gap-x-3 transition-all ${quiz.currentIndex === quiz.questions.length - 1 ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-white text-zinc-950 hover:bg-zinc-100'}`;
+            
+            if (quiz.currentIndex === quiz.questions.length - 1) {
+                nextBtn.innerHTML = `VOIR MON RÉSULTAT FINAL <i class="fa-solid fa-trophy ml-2"></i>`;
+                nextBtn.onclick = () => finishQuiz(subjectKey);
+            } else {
+                nextBtn.innerHTML = `QUESTION SUIVANTE <i class="fa-solid fa-arrow-right ml-2"></i>`;
+                nextBtn.onclick = () => {
+                    quiz.currentIndex++;
+                    renderCurrentQuestion(subjectKey);
+                };
+            }
+            
+            optionsContainer.parentNode.appendChild(nextBtn);
+        }
+
+        function finishQuiz(subjectKey) {
+            const quiz = currentQuiz;
+            const percentage = Math.round((quiz.score / quiz.questions.length) * 100);
+            const subject = revisionData[subjectKey];
+            
+            // Update best score if better
+            if (percentage > (userScores[subjectKey] || 0)) {
+                userScores[subjectKey] = percentage;
+                localStorage.setItem('brevetMaxScores', JSON.stringify(userScores));
+            }
+            
+            const container = document.getElementById(`${subjectKey}-quiz-container`);
+            
+            let message = '';
+            let emoji = '';
+            if (percentage >= 90) {
+                message = "Excellent ! Tu es prêt à tout déchirer au brevet 🔥";
+                emoji = '🏆';
+            } else if (percentage >= 70) {
+                message = "Très bon score ! Continue comme ça, tu vas cartonner 💪";
+                emoji = '🎯';
+            } else if (percentage >= 50) {
+                message = "Pas mal ! Relis les fiches et refais le quiz pour progresser.";
+                emoji = '📈';
+            } else {
+                message = "C'est le début ! Relis bien les fiches et réessaie. Tu vas y arriver.";
+                emoji = '💪';
+            }
+            
+            container.innerHTML = `
+                <div class="text-center py-6">
+                    <div class="text-7xl mb-4">${emoji}</div>
+                    <div class="text-5xl font-bold tabular-nums mb-1">${percentage}<span class="text-3xl align-super">%</span></div>
+                    <div class="text-xl font-semibold mb-2">${quiz.score} / ${quiz.questions.length} bonnes réponses</div>
+                    
+                    <div class="max-w-md mx-auto mt-6">
+                        <p class="text-lg text-zinc-300">${message}</p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                        <button onclick="restartQuiz('${subjectKey}')" 
+                                class="px-8 py-3.5 bg-white text-zinc-950 hover:bg-zinc-100 font-bold rounded-3xl flex-1 sm:flex-none">
+                            REFAIRE CE QUIZ
+                        </button>
+                        <button onclick="goToSubject('${subjectKey}'); document.getElementById('${subjectKey}-quiz-start').classList.remove('hidden'); document.getElementById('${subjectKey}-quiz-container').classList.add('hidden');" 
+                                class="px-8 py-3.5 border border-zinc-600 hover:bg-zinc-800 font-bold rounded-3xl flex-1 sm:flex-none">
+                            RETOUR AUX FICHES
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Update UI everywhere
+            renderProgressOverview();
+            document.getElementById(`score-badge-${subjectKey}`).innerHTML = `${userScores[subjectKey]}<span class="text-base align-super">%</span>`;
+            
+            // Confetti if good score
+            if (percentage >= 70) {
+                launchConfetti();
+            }
+        }
+
+        function restartQuiz(subjectKey) {
+            document.getElementById(`${subjectKey}-quiz-container`).classList.add('hidden');
+            document.getElementById(`${subjectKey}-quiz-start`).classList.remove('hidden');
+        }
+
+        // ==================== FLASHCARDS SYSTEM ====================
+        function startFlashcards(subjectKey) {
+            const subject = revisionData[subjectKey];
+            currentFlashcard = {
+                subject: subjectKey,
+                index: 0,
+                data: [...subject.flashcards]
+            };
+            
+            document.getElementById(`${subjectKey}-flashcard-start`).classList.add('hidden');
+            const viewer = document.getElementById(`${subjectKey}-flashcard-viewer`);
+            viewer.classList.remove('hidden');
+            
+            renderFlashcard(subjectKey);
+        }
+
+        function renderFlashcard(subjectKey) {
+            const viewer = document.getElementById(`${subjectKey}-flashcard-viewer`);
+            const fc = currentFlashcard;
+            const card = fc.data[fc.index];
+            
+            viewer.innerHTML = `
+                <div class="max-w-xl mx-auto">
+                    <div class="flex justify-between items-center mb-4 px-1">
+                        <div class="text-xs font-mono px-4 py-1 bg-zinc-800 rounded-2xl">CARTE ${fc.index + 1} / ${fc.data.length}</div>
+                        <button onclick="shuffleFlashcards('${subjectKey}')" class="text-xs flex items-center gap-x-1.5 px-4 py-1 hover:bg-zinc-800 rounded-2xl">
+                            <i class="fa-solid fa-random"></i>
+                            <span>Mélanger</span>
+                        </button>
+                    </div>
+                    
+                    <div onclick="flipFlashcard(this)" class="flashcard bg-zinc-800 border border-zinc-600 hover:border-zinc-400 cursor-pointer rounded-3xl p-9 min-h-[220px] flex flex-col justify-center items-center text-center shadow-inner">
+                        <div id="flashcard-front" class="text-2xl font-semibold leading-tight">
+                            ${card.front}
+                        </div>
+                        <div id="flashcard-back" class="hidden text-xl text-emerald-300 leading-tight mt-2">
+                            ${card.back}
+                        </div>
+                        
+                        <div class="mt-8 text-xs text-zinc-400 flex items-center gap-x-2" id="flip-hint">
+                            <i class="fa-solid fa-hand-pointer"></i>
+                            <span>Clique pour voir la réponse</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-6">
+                        <button onclick="prevFlashcard('${subjectKey}')" 
+                                class="px-6 py-3 flex items-center gap-x-2 text-sm font-medium hover:bg-zinc-800 rounded-2xl ${fc.index === 0 ? 'opacity-40 pointer-events-none' : ''}">
+                            <i class="fa-solid fa-chevron-left"></i> Précédent
+                        </button>
+                        
+                        <button onclick="nextFlashcard('${subjectKey}')" 
+                                class="px-6 py-3 flex items-center gap-x-2 text-sm font-medium hover:bg-zinc-800 rounded-2xl">
+                            Suivant <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function flipFlashcard(cardElement) {
+            const front = cardElement.querySelector('#flashcard-front');
+            const back = cardElement.querySelector('#flashcard-back');
+            const hint = cardElement.querySelector('#flip-hint');
+            
+            if (back.classList.contains('hidden')) {
+                front.classList.add('hidden');
+                back.classList.remove('hidden');
+                hint.innerHTML = `<i class="fa-solid fa-redo"></i> <span>Clique pour revenir</span>`;
+            } else {
+                front.classList.remove('hidden');
+                back.classList.add('hidden');
+                hint.innerHTML = `<i class="fa-solid fa-hand-pointer"></i> <span>Clique pour voir la réponse</span>`;
+            }
+        }
+
+        function nextFlashcard(subjectKey) {
+            currentFlashcard.index = (currentFlashcard.index + 1) % currentFlashcard.data.length;
+            renderFlashcard(subjectKey);
+        }
+
+        function prevFlashcard(subjectKey) {
+            currentFlashcard.index = (currentFlashcard.index - 1 + currentFlashcard.data.length) % currentFlashcard.data.length;
+            renderFlashcard(subjectKey);
+        }
+
+        function shuffleFlashcards(subjectKey) {
+            // Fisher-Yates shuffle
+            let array = currentFlashcard.data;
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            currentFlashcard.index = 0;
+            renderFlashcard(subjectKey);
+        }
+
+        // ==================== MIXED QUIZ ====================
+        function showMixedQuiz() {
+            // Collect all questions from all subjects
+            let allQuestions = [];
+            Object.keys(revisionData).forEach(key => {
+                const subj = revisionData[key];
+                subj.questions.forEach(q => {
+                    allQuestions.push({
+                        ...q,
+                        subject: key,
+                        subjectName: subj.name,
+                        subjectIcon: subj.icon
+                    });
+                });
+            });
+            
+            // Shuffle and pick 8
+            allQuestions = allQuestions.sort(() => Math.random() - 0.5).slice(0, 8);
+            
+            // Create a temporary modal-like experience
+            const modalHTML = `
+                <div id="mixed-quiz-modal" class="fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-6" onclick="if (event.target.id === 'mixed-quiz-modal') closeMixedQuiz()">
+                    <div class="bg-zinc-900 border border-zinc-700 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-auto" onclick="event.stopImmediatePropagation()">
+                        <div class="p-8">
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <div class="flex items-center gap-x-3">
+                                        <i class="fa-solid fa-dice text-3xl text-indigo-400"></i>
+                                        <div>
+                                            <h3 class="font-bold text-3xl">Quiz Mixte Aléatoire</h3>
+                                            <p class="text-sm text-zinc-400">8 questions tirées au hasard dans toutes les matières</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button onclick="closeMixedQuiz()" class="text-zinc-400 hover:text-white text-3xl leading-none">×</button>
+                            </div>
+                            
+                            <div id="mixed-quiz-content">
+                                <!-- Content injected here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            
+            // Start the mixed quiz
+            window.mixedQuizState = {
+                questions: allQuestions,
+                currentIndex: 0,
+                score: 0,
+                answers: []
+            };
+            
+            renderMixedQuestion();
+        }
+
+        function renderMixedQuestion() {
+            const state = window.mixedQuizState;
+            const container = document.getElementById('mixed-quiz-content');
+            const q = state.questions[state.currentIndex];
+            
+            let html = `
+                <div class="flex items-center justify-between mb-5">
+                    <div class="flex items-center gap-x-2 text-xs">
+                        <span class="px-3.5 py-1 bg-zinc-800 rounded-2xl font-mono">QUESTION ${state.currentIndex + 1} / ${state.questions.length}</span>
+                        <span class="px-3 py-1 bg-zinc-800 rounded-2xl flex items-center gap-x-1.5 text-xs">
+                            ${q.subjectIcon} <span class="font-medium">${q.subjectName}</span>
+                        </span>
+                    </div>
+                    <div class="font-mono text-sm text-zinc-400">Score: <span class="font-bold text-white">${state.score}</span></div>
+                </div>
+                
+                <div class="text-xl font-semibold mb-7 leading-snug">${q.q}</div>
+                
+                <div class="space-y-3 mb-6" id="mixed-options">
+            `;
+            
+            q.options.forEach((opt, idx) => {
+                html += `
+                    <button onclick="selectMixedAnswer(${idx})" class="quiz-option w-full text-left px-6 py-4 border border-zinc-600 hover:border-zinc-400 rounded-2xl flex items-center gap-x-4">
+                        <div class="w-8 h-8 flex-shrink-0 rounded-xl border border-zinc-600 flex items-center justify-center font-mono text-sm">
+                            ${String.fromCharCode(65 + idx)}
+                        </div>
+                        <span>${opt}</span>
+                    </button>
+                `;
+            });
+            
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function selectMixedAnswer(selectedIndex) {
+            const state = window.mixedQuizState;
+            const q = state.questions[state.currentIndex];
+            const isCorrect = selectedIndex === q.correct;
+            
+            if (isCorrect) state.score++;
+            
+            state.answers.push({ selected: selectedIndex, correct: q.correct, isCorrect });
+            
+            const optionsContainer = document.getElementById('mixed-options');
+            const buttons = optionsContainer.querySelectorAll('button');
+            
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === q.correct) {
+                    btn.classList.add('correct', 'border-green-500', 'bg-green-900/30');
+                } else if (idx === selectedIndex && !isCorrect) {
+                    btn.classList.add('wrong', 'border-red-500', 'bg-red-900/30');
+                }
+            });
+            
+            // Explanation
+            const exp = document.createElement('div');
+            exp.className = `mt-5 p-5 rounded-2xl border text-sm ${isCorrect ? 'border-green-600 bg-green-900/10' : 'border-red-600 bg-red-900/10'}`;
+            exp.innerHTML = `
+                <div class="font-semibold mb-1 ${isCorrect ? 'text-green-400' : 'text-red-400'}">
+                    ${isCorrect ? 'Correct !' : 'Incorrect'} — ${q.explanation}
+                </div>
+            `;
+            optionsContainer.parentNode.appendChild(exp);
+            
+            const nextBtn = document.createElement('button');
+            nextBtn.className = `mt-6 w-full py-4 text-lg font-bold rounded-3xl flex justify-center items-center gap-x-3 ${state.currentIndex === state.questions.length - 1 ? 'bg-emerald-600' : 'bg-white text-zinc-950'}`;
+            
+            if (state.currentIndex === state.questions.length - 1) {
+                nextBtn.innerHTML = `VOIR LE RÉSULTAT FINAL <i class="fa-solid fa-trophy ml-2"></i>`;
+                nextBtn.onclick = finishMixedQuiz;
+            } else {
+                nextBtn.innerHTML = `QUESTION SUIVANTE <i class="fa-solid fa-arrow-right ml-2"></i>`;
+                nextBtn.onclick = () => {
+                    state.currentIndex++;
+                    renderMixedQuestion();
+                };
+            }
+            optionsContainer.parentNode.appendChild(nextBtn);
+        }
+
+        function finishMixedQuiz() {
+            const state = window.mixedQuizState;
+            const percentage = Math.round((state.score / state.questions.length) * 100);
+            
+            const container = document.getElementById('mixed-quiz-content');
+            
+            let msg = '';
+            if (percentage >= 85) msg = "Incroyable ! Tu as un excellent niveau général 🔥";
+            else if (percentage >= 65) msg = "Super perf ! Tu es sur la bonne voie pour le brevet 💪";
+            else msg = "Bien joué d'avoir essayé ! Continue à réviser les points faibles.";
+            
+            container.innerHTML = `
+                <div class="text-center py-4">
+                    <div class="text-6xl mb-3">🎲</div>
+                    <div class="text-6xl font-bold tabular-nums">${percentage}<span class="text-3xl align-super">%</span></div>
+                    <div class="mt-1 text-xl">${state.score} / ${state.questions.length} bonnes réponses</div>
+                    
+                    <p class="mt-6 text-zinc-300 max-w-xs mx-auto">${msg}</p>
+                    
+                    <button onclick="closeMixedQuiz()" 
+                            class="mt-9 px-10 py-3.5 bg-white text-zinc-950 hover:bg-zinc-100 font-bold rounded-3xl">
+                        RETOUR À L'ACCUEIL
+                    </button>
+                </div>
+            `;
+            
+            if (percentage >= 70) launchConfetti();
+        }
+
+        function closeMixedQuiz() {
+            const modal = document.getElementById('mixed-quiz-modal');
+            if (modal) modal.remove();
+            // Refresh progress just in case
+            renderProgressOverview();
+        }
+
+        // Simple confetti
+        function launchConfetti() {
+            const colors = ['#6366f1', '#a855f7', '#22c55e', '#eab308'];
+            for (let i = 0; i < 45; i++) {
+                setTimeout(() => {
+                    const confetto = document.createElement('div');
+                    confetto.style.position = 'fixed';
+                    confetto.style.zIndex = '99999';
+                    confetto.style.left = Math.random() * window.innerWidth + 'px';
+                    confetto.style.top = '-20px';
+                    confetto.style.width = '10px';
+                    confetto.style.height = '10px';
+                    confetto.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    confetto.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetto.style.opacity = Math.random() + 0.6;
+                    document.body.appendChild(confetto);
+                    
+                    const duration = Math.random() * 2500 + 2200;
+                    const angle = Math.random() * 60 - 30;
+                    
+                    confetto.animate([
+                        { 
+                            transform: `translateY(0) rotate(0deg)`,
+                            opacity: confetto.style.opacity 
+                        },
+                        { 
+                            transform: `translateY(${window.innerHeight + 100}px) rotate(${angle * 8}deg)`,
+                            opacity: 0 
+                        }
+                    ], {
+                        duration: duration,
+                        easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)'
+                    }).onfinish = () => confetto.remove();
+                }, i * 2);
+            }
+        }
+
+        // Reset all progress
+        function resetAllProgress() {
+            if (!confirm("Tu es sûr de vouloir tout réinitialiser ? Tes scores seront effacés.")) return;
+            
+            userScores = { maths: 0, francais: 0, hg: 0, svt: 0, physique: 0 };
+            localStorage.setItem('brevetMaxScores', JSON.stringify(userScores));
+            
+            // Refresh everything
+            renderProgressOverview();
+            renderSubjectCards();
+            
+            // Update score badges in sections
+            Object.keys(revisionData).forEach(key => {
+                const badge = document.getElementById(`score-badge-${key}`);
+                if (badge) badge.innerHTML = `0<span class="text-base align-super">%</span>`;
+            });
+            
+            // Close any open quiz/flashcard
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('[id$="-quiz-start"]').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('[id$="-flashcard-start"]').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('[id$="-quiz-container"]').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('[id$="-flashcard-viewer"]').forEach(el => el.classList.add('hidden'));
+        }
+
+        // Keyboard support for fun
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "?" && document.activeElement.tagName === "BODY") {
+                e.preventDefault();
+                const subjects = Object.keys(revisionData);
+                const random = subjects[Math.floor(Math.random() * subjects.length)];
+                goToSubject(random);
+            }
+        });
+
+        // Boot the app
+        window.onload = function() {
+            init();
+            
+            // Easter egg: press "g" for grok mention
+            document.addEventListener('keypress', function(e) {
+                if (e.key.toLowerCase() === 'g') {
+                    const header = document.querySelector('header');
+                    if (header) {
+                        header.style.transition = 'all 0.3s';
+                        header.style.boxShadow = '0 0 0 3px rgba(99, 102, 241, 0.3)';
+                        setTimeout(() => {
+                            header.style.boxShadow = 'none';
+                        }, 1200);
+                    }
+                }
+            });
+            
+            // Welcome message in console for the curious
+            console.log('%c[Brevet Max] Outil de révision créé avec ❤️ par Ali. Bon courage pour le brevet 2026 !', 'color:#64748b');
+        };
+    </script>
+</body>
+</html>
